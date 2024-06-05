@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Local Movie Database Home</h1>
+  <p>
+    Welcome to Local Movie Database, a website developed by
+    <em><a href="{% url 'jonas_kao' %}">Jonas Kao</a></em> !
+  </p>
+
+  <div>
+  {% load static %}
+  <img src = "{% static 'images/wallpaper.jpg' %}" alt="My image" width="550px">
+  </div>
+
+  <h2>Dynamic content</h2>
+  <p>The database has the following record counts:</p>
+  <ul>
+    <li><strong>Movies:</strong> {{ num_movies }}</li>
+    <li><strong>Copies:</strong> {{ num_instances }}</li>
+    <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
+    <li><strong>Directors:</strong> {{ num_directors }}</li>
+  </ul>
+
+  <p>
+    You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}.
+  </p>
+{% endblock %}

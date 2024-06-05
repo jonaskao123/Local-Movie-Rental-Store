@@ -1,0 +1,32 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1>Director: {{ director }} </h1>
+<p>{{director.date_of_birth}} - {% if director.date_of_death %}{{director.date_of_death}}{% endif %}</p>
+
+<div style="margin-left:20px;margin-top:20px">
+<h4>Movies</h4>
+
+<dl>
+{% for movie in director.movie_set.all %}
+  <dt><a href = "{% url 'movie-detail' movie.pk %}">{{movie}}</a> (Rating: {{movie.rating}})</dt>
+  <dd>{{movie.summary}}</dd>
+  {% empty %}
+  <p>This director has no movies.</p>
+{% endfor %}
+</dl>
+
+</div>
+{% endblock %}
+
+{% block sidebar %}
+  {{ block.super }}
+
+  {% if perms.catalog.change_director or perms.catalog.delete_director %}
+  <hr>
+  <ul class = "sidebar-nav">
+    {% endif %}
+    </ul>
+
+{% endblock %}

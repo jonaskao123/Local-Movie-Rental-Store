@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Title: {{ movie.title }}</h1>
+
+  <p><strong>Director:</strong> <a href = "{{ movie.director.get_absolute_url }}">{{ movie.director }}</a></p>
+  <p><strong>Summary:</strong> {{ movie.summary }}</p>
+  <p><strong>IMDB-ID:</strong> {{ movie.imdb_id }}</p>
+  <p><strong>Rating:</strong> {{ movie.rating }}</p>
+  <p><strong>Genre:</strong> {{ movie.genre.all|join:", " }}</p>
+
+  <div style="margin-left:20px;margin-top:20px">
+  </div>
+{% endblock %}
