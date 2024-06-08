@@ -10,3 +10,8 @@ urlpatterns = [
          views.DirectorDetailView.as_view(), name = 'director-detail'),
     path('jonas-kao/', views.jonas_kao, name = 'jonas_kao'),
 ]
+
+urlpatterns += [
+    path('mymovies/', views.LoanedMoviesByUserListView.as_view(), name='my-borrowed'),
+    path(r'borrowed/', views.LoanedMoviesAllListView.as_view(), name='all-borrowed'),  # Added for challenge
+]
