@@ -3,6 +3,7 @@ from django.db import models
 from django.urls import reverse
 from django.db.models import UniqueConstraint
 from django.db.models.functions import Lower
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Genre(models.Model):
@@ -55,12 +56,20 @@ class Movie(models.Model):
         return reverse("movie-detail", args = [str(self.id)])
 
 import uuid
+from datetime import date
 
 class MovieInstance(models.Model):
     id = models.UUIDField(primary_key = True, default = uuid.uuid4, help_text = "Unique ID for this particular movie across whole library")
     movie = models.ForeignKey("Movie", on_delete = models.SET_NULL, null = True)
     imprint = models.CharField(max_length = 200)
     due_back = models.DateField(null = True, blank = True)
+    borrower = models.ForeignKey(User, on_delete = models.SET_NULL, null = True, blank = True)
+
+    @property
+    def is_overdue(self):
+        if self.due_back and date.today() > self.due_back:
+            return True
+        return False
 
     LOAN_STATUS = (
         ("m", "Maintenance"),
