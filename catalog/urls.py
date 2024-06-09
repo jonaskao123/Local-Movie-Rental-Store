@@ -15,3 +15,8 @@ urlpatterns += [
     path('mymovies/', views.LoanedMoviesByUserListView.as_view(), name='my-borrowed'),
     path(r'borrowed/', views.LoanedMoviesAllListView.as_view(), name='all-borrowed'),  # Added for challenge
 ]
+
+urlpatterns += [
+    path('genres/', views.GenreListView.as_view(), name = 'genres'),
+    path('genre/<int:pk>', views.GenreDetailView.as_view(), name = 'genre-detail'),
+]
