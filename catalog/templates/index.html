@@ -1,9 +1,9 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Local Movie Database Home</h1>
+  <h1>Local Video Rental Store</h1>
   <p>
-    Welcome to Local Movie Database, a website developed by
+    Welcome to Local Video Rental Store, a website developed by
     <em><a href="{% url 'jonas_kao' %}">Jonas Kao</a></em> !
   </p>
 
@@ -13,7 +13,7 @@
   </div>
 
   <h2>Dynamic content</h2>
-  <p>The database has the following record counts:</p>
+  <p>The rental store has the following record counts:</p>
   <ul>
     <li><strong>Movies:</strong> {{ num_movies }}</li>
     <li><strong>Copies:</strong> {{ num_instances }}</li>
