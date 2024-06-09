@@ -1,0 +1,34 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1>Genre: {{ genre.name }}</h1>
+
+<div style = "margin-left:20px;margin-top:20px">
+<h4>Movies in genre</h4>
+
+<ul>
+  {% for copy in genre.movie_set.all %}
+  <li>
+    <a href="{{ copy.get_absolute_url }}">{{ copy.title }}</a> ({{copy.director}})
+  </li>
+  {% empty %}
+  <li>There are no movies in this genre.</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
+
+
+{% block sidebar %}
+  {{ block.super }}
+
+  {% if perms.catalog.change_genre or perms.catalog.delete_genre %}
+  <hr>
+  <ul class = "sidebar-nav">
+    {% if perms.catalog.change_genre %}
+    {% endif %}
+    </ul>
+  {% endif %}
+
+{% endblock %}
